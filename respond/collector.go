@@ -1,9 +1,6 @@
 package respond
 
 import (
-	"bytes"
-	"compress/flate"
-	"encoding/json"
 	"fmt"
 	"net"
 	"time"
@@ -86,7 +83,7 @@ func (coll *Collector) listenUDP(iface InterfaceConfig) {
 	if err != nil {
 		log.Panic(err)
 	}
-	conn.SetReadBuffer(maxDataGramSize)
+	conn.SetReadBuffer(MaxDataGramSize)
 
 	coll.connections = append(coll.connections, multicastConn{
 		Conn:             conn,
@@ -245,18 +242,6 @@ func (coll *Collector) parser() {
 	}
 }
 
-func (res *Response) parse() (*data.ResponseData, error) {
-	// Deflate
-	deflater := flate.NewReader(bytes.NewReader(res.Raw))
-	defer deflater.Close()
-
-	// Unmarshal
-	rdata := &data.ResponseData{}
-	err := json.NewDecoder(deflater).Decode(rdata)
-
-	return rdata, err
-}
-
 func (coll *Collector) saveResponse(addr *net.UDPAddr, res *data.ResponseData) {
 	// Search for NodeID
 	var nodeID string
@@ -308,7 +293,7 @@ func (coll *Collector) saveResponse(addr *net.UDPAddr, res *data.ResponseData) {
 }
 
 func (coll *Collector) receiver(conn *net.UDPConn) {
-	buf := make([]byte, maxDataGramSize)
+	buf := make([]byte, MaxDataGramSize)
 	for {
 		n, src, err := conn.ReadFromUDP(buf)
 
