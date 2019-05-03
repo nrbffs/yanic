@@ -11,10 +11,10 @@ import (
 
 const (
 	// default multicast group used by announced
-	multicastAddressDefault = "ff05:0:0:0:0:0:2:1001"
+	MulticastAddressDefault = "ff05:0:0:0:0:0:2:1001"
 
 	// default udp port used by announced
-	port = 1001
+	PortDefault = 1001
 
 	// maximum receivable size
 	MaxDataGramSize = 8192

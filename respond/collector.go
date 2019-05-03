@@ -69,7 +69,7 @@ func (coll *Collector) listenUDP(iface InterfaceConfig) {
 		}
 	}
 
-	multicastAddress := multicastAddressDefault
+	multicastAddress := MulticastAddressDefault
 	if iface.MulticastAddress != "" {
 		multicastAddress = iface.MulticastAddress
 	}
@@ -208,7 +208,7 @@ func (coll *Collector) SendPacket(destination net.IP) {
 func (coll *Collector) sendPacket(conn *net.UDPConn, destination net.IP) {
 	addr := net.UDPAddr{
 		IP:   destination,
-		Port: port,
+		Port: PortDefault,
 		Zone: conn.LocalAddr().(*net.UDPAddr).Zone,
 	}
 
