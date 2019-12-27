@@ -73,6 +73,7 @@ func TestParseCustomFields(t *testing.T) {
 	assert.NotNil(data)
 
 	assert.Equal("Trillian", data.CustomFields["my_custom_field"])
+	assert.Equal("Trillian", data.Nodeinfo.Hostname)
 }
 
 func TestParseCustomFieldNotExistant(t *testing.T) {
