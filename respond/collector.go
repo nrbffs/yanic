@@ -261,7 +261,7 @@ func (res *Response) parse(customFields []CustomFieldConfig) (*data.ResponseData
 	rdata := &data.ResponseData{}
 	err = json.Unmarshal(jsonData, rdata)
 
-	rdata.CustomFields = make(map[string]string)
+	rdata.CustomFields = make(map[string]interface{})
 	if !gjson.Valid(string(jsonData)) {
 		log.WithField("jsonData", jsonData).Info("JSON data is invalid")
 	} else {
