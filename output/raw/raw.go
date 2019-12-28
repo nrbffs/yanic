@@ -8,13 +8,13 @@ import (
 
 // Node struct
 type RawNode struct {
-	Firstseen    jsontime.Time     `json:"firstseen"`
-	Lastseen     jsontime.Time     `json:"lastseen"`
-	Online       bool              `json:"online"`
-	Statistics   *data.Statistics  `json:"statistics"`
-	Nodeinfo     *data.Nodeinfo    `json:"nodeinfo"`
-	Neighbours   *data.Neighbours  `json:"neighbours"`
-	CustomFields map[string]string `json:"custom_fields"`
+	Firstseen    jsontime.Time          `json:"firstseen"`
+	Lastseen     jsontime.Time          `json:"lastseen"`
+	Online       bool                   `json:"online"`
+	Statistics   *data.Statistics       `json:"statistics"`
+	Nodeinfo     *data.Nodeinfo         `json:"nodeinfo"`
+	Neighbours   *data.Neighbours       `json:"neighbours"`
+	CustomFields map[string]interface{} `json:"custom_fields"`
 }
 
 type NodeList struct {
